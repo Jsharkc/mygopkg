@@ -1,0 +1,2 @@
+# mygopkg
+my go pkg
