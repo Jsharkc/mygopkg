@@ -1,4 +1,4 @@
-module mygopkg
+module github.com/Jsharkc/mygopkg
 
 go 1.25.4
 
