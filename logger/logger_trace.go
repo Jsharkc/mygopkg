@@ -9,7 +9,7 @@ import (
 type contextKey string
 
 const (
-	traceIDKey contextKey = "trace_id"
+	TraceIDKey contextKey = "trace_id"
 	userIDKey  contextKey = "user_id"
 )
 
@@ -21,14 +21,14 @@ const (
 // WithTraceID adds traceID to context and returns a new context with logger
 func WithTraceID(ctx context.Context, traceID string) context.Context {
 	// Add traceID to context
-	ctx = context.WithValue(ctx, traceIDKey, traceID)
+	ctx = context.WithValue(ctx, TraceIDKey, traceID)
 
 	// Get existing logger or create new one
 	logger := FromContext(ctx)
 
 	// Add traceID to logger
 	logger = &Logger{
-		SugaredLogger: logger.With(zap.String(string(traceIDKey), traceID)),
+		SugaredLogger: logger.With(zap.String(string(TraceIDKey), traceID)),
 	}
 
 	// Add logger to context
@@ -71,7 +71,7 @@ func FromContext(ctx context.Context) *Logger {
 
 // GetTraceID gets traceID from context
 func GetTraceID(ctx context.Context) string {
-	if traceID, ok := ctx.Value(traceIDKey).(string); ok {
+	if traceID, ok := ctx.Value(TraceIDKey).(string); ok {
 		return traceID
 	}
 	return ""
